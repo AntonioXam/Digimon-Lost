@@ -475,5 +475,42 @@ button {
 
 .music-btn.muted .music-icon {
     content: "🔇";
+}
+
+/* Estilos del footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.footer p {
+    color: #1a237e;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.license {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.license img {
+    height: 31px;
+    transition: transform 0.3s ease;
+}
+
+.license img:hover {
+    transform: scale(1.1);
+}
+
+.license span {
+    color: #666;
+    font-size: 0.9em;
 } 
 
