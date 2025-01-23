@@ -1,0 +1,437 @@
+/* Estilos generales y reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configuración del fondo y contenedor principal */
+body {
+    font-family: Arial, sans-serif;
+    background: url('assets/img/FondoDigi.jpg') no-repeat center center fixed;
+    background-size: cover;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Estilos del logo */
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.digimon-logo {
+    max-width: 300px;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+}
+
+/* Layout principal del juego */
+.game-layout {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+/* Contenedor del juego principal */
+.game-container {
+    flex: 0 1 600px;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Estilos del encabezado */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #1a237e;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    margin-bottom: 15px;
+}
+
+/* Estilos del marcador */
+.score-board {
+    display: flex;
+    justify-content: space-around;
+    margin: 15px 0;
+    font-size: 1.2em;
+    background-color: #e3f2fd;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#turn-indicator {
+    font-weight: bold;
+    color: #1565c0;
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+/* Estilos del marcador con colores distintivos */
+.player-score {
+    background-color: #2196F3;  /* Azul para el jugador */
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+.cpu-score {
+    background-color: #4CAF50;  /* Verde para la CPU */
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+/* Estilos del tablero y celdas */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.cell {
+    aspect-ratio: 1;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 2em;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.cell.revealed img {
+    display: block;
+}
+
+.cell:hover:not(.revealed) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    background-color: #d0d0d0;
+}
+
+.cell.revealed {
+    background-color: #fff;
+    cursor: not-allowed;
+}
+
+/* Estilos para las celdas con aciertos/fallos */
+.cell.revealed.player-hit {
+    background-color: #E3F2FD;  /* Fondo azul claro para aciertos del jugador */
+}
+
+.cell.revealed.cpu-hit {
+    background-color: #E8F5E9;  /* Fondo verde claro para aciertos de la CPU */
+}
+
+.cell.revealed.fail {
+    background-color: #FFEBEE;  /* Fondo rojo claro para fallos */
+}
+
+/* Estilos de los botones */
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Contenedor y botón de turno extra */
+.extra-turn-container {
+    flex: 0 0 200px;
+    position: sticky;
+    top: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+#extra-turn-btn {
+    width: 200px;
+    margin-bottom: 10px;
+    background-color: #2196F3;
+    color: white;
+    box-shadow: 0 2px 5px rgba(33,150,243,0.3);
+}
+
+#extra-turn-btn:hover:not(:disabled) {
+    background-color: #1976D2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(33,150,243,0.4);
+}
+
+/* Estilos del dado */
+.dice-container {
+    margin-top: 20px;
+    position: relative;
+}
+
+.dice-container img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.dice-result {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    font-weight: bold;
+    color: #1565c0;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: none;
+}
+
+/* Contenedor y botón de reinicio */
+.reset-container {
+    flex: 0 0 200px;
+    position: sticky;
+    top: 20px;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+#reset-btn {
+    width: 200px;
+    background-color: #f44336;
+    color: white;
+    box-shadow: 0 2px 5px rgba(244,67,54,0.3);
+}
+
+#reset-btn:hover {
+    background-color: #d32f2f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(244,67,54,0.4);
+}
+
+/* Estilos del historial */
+.history {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+}
+
+#game-history {
+    margin-top: 10px;
+}
+
+/* Estilos del modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: modalAppear 0.3s ease-out;
+}
+
+.modal h2 {
+    color: #1a237e;
+    margin-bottom: 20px;
+}
+
+.modal p {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+.modal button {
+    background-color: #2196F3;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+.modal button:hover {
+    background-color: #1976D2;
+    transform: translateY(-2px);
+}
+
+#modal-input-container {
+    margin-bottom: 20px;
+}
+
+#player-name-input {
+    padding: 10px;
+    width: 80%;
+    border: 2px solid #1976D2;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Animaciones */
+@keyframes modalAppear {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Utilidades */
+.hidden {
+    display: none !important;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.digivice {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#digimon-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.digimon-entry {
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.digimon-entry img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+/* Estilos para el modal de instrucciones */
+.modal-content.instructions {
+    max-width: 600px;
+    padding: 30px;
+}
+
+.instructions-content {
+    text-align: left;
+    margin: 20px 0;
+}
+
+.instructions-content section {
+    margin-bottom: 25px;
+}
+
+.instructions-content h3 {
+    color: #2196F3;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.instructions-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.instructions-content li {
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: #1565c0;
+    font-weight: bold;
+}
+
+.example {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.example img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.example-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.example-row img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#start-game {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 30px;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+#start-game:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+} 
+

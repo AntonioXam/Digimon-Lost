@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En Busca de los Digimon Perdidos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Elementos de audio para efectos de sonido y música -->
+    <audio id="background-music" loop>
+        <source src="assets/audio/Digimon Intro Theme Song.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="success-sound">
+        <source src="assets/audio/correcto.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="fail-sound">
+        <source src="assets/audio/error.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Logo del juego -->
+    <div class="logo-container">
+        <img src="assets/img/logoDigi.png" alt="Logo de Digimon" class="digimon-logo" title="Digimon Logo" loading="eager" width="300" height="auto">
+    </div>
+
+    <!-- Contenedor principal del juego -->
+    <div class="game-layout">
+        <!-- Sección del dado para turno extra -->
+        <div class="extra-turn-container">
+            <button id="extra-turn-btn" disabled>Intentar Turno Extra</button>
+            <div id="dice-animation" class="dice-container hidden">
+                <img src="assets/img/dice.gif" alt="Dado girando" width="150" height="150">
+                <div id="dice-result" class="dice-result"></div>
+            </div>
+        </div>
+
+        <!-- Contenedor del juego principal -->
+        <div class="game-container">
+            <header>
+                <h1>En Busca de los Digimon Perdidos</h1>
+                <!-- Marcador de puntuación -->
+                <div class="score-board">
+                    <div class="player-score">Jugador: <span id="player-score">0</span>/3</div>
+                    <div class="cpu-score">CPU: <span id="cpu-score">0</span>/3</div>
+                </div>
+                <div id="turn-indicator">Turno: Jugador</div>
+            </header>
+
+            <!-- Tablero de juego 4x4 -->
+            <div class="game-board">
+                <!-- Las celdas se generan dinámicamente -->
+            </div>
+
+            <!-- Historial de partidas -->
+            <div class="history">
+                <h2>Histórico del DigiGame:</h2>
+                <div id="game-history">
+                    <!-- El histórico se genera dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón de reinicio -->
+        <div class="reset-container">
+            <button id="reset-btn">Reiniciar Juego</button>
+        </div>
+    </div>
+
+    <!-- Modal para mensajes y entrada de nombre -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="modal-title"></h2>
+            <p id="modal-message"></p>
+            <div id="modal-input-container" class="hidden">
+                <input type="text" id="player-name-input" placeholder="Introduce tu nombre">
+            </div>
+            <button id="modal-close">Aceptar</button>
+        </div>
+    </div>
+
+    <!-- Modal de instrucciones -->
+    <div id="instructions-modal" class="modal">
+        <div class="modal-content instructions">
+            <h2>¿Cómo jugar?</h2>
+            <div class="instructions-content">
+                <section>
+                    <h3>Objetivo</h3>
+                    <p>Encuentra 3 Digimon antes que la CPU para ganar.</p>
+                    <div class="example">
+                        <img src="assets/img/examples/objetivo.png" alt="Ejemplo de victoria">
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Mecánica</h3>
+                    <ul>
+                        <li>
+                            <span class="highlight">Si encuentras un Digimon:</span>
+                            <div class="example-row">
+                                <img src="assets/img/examples/acierto.png" alt="Ejemplo de acierto">
+                                <p>Puedes intentar un turno extra con el dado</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="highlight">Si sacas un 6:</span>
+                            <div class="example-row">
+                                <img src="assets/img/examples/dado6.png" alt="Ejemplo de dado">
+                                <p>¡Tienes otro turno!</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="highlight">Si encuentras a Sukamon:</span>
+                            <div class="example-row">
+                                <img src="assets/img/examples/fallo.png" alt="Ejemplo de fallo">
+                                <p>Pierdes el turno</p>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <button id="start-game">¡Comenzar Juego!</button>
+        </div>
+    </div>
+
+    <!-- Scripts del juego -->
+    <script src="digimon.js"></script>
+    <script src="game.js"></script>
+</body>
+</html> 

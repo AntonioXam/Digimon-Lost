@@ -1,0 +1,90 @@
+Práctica: En busca de los Digimon perdidos
+
+Descripción:
+En esta práctica crearás un emocionante juego de búsqueda de Digimon. Como DigiDestinado, deberás encontrar y rescatar Digimon que se han perdido en diferentes áreas del Digimundo.
+
+Objetivos:
+- Crear un juego interactivo usando programación orientada a objetos
+- Implementar mecánicas de búsqueda y captura
+- Manejar colecciones de objetos
+- Practicar el uso de interfaces gráficas básicas
+
+Elementos del juego:
+
+1. DigiDestinado (Jugador):
+   - Se mueve por el mapa usando las teclas de dirección
+   - Tiene un Digivice para analizar y registrar Digimon
+   - Puede interactuar con los Digimon encontrados
+
+2. Digimon:
+   - Diferentes especies (Agumon, Gabumon, Patamon, etc.)
+   - Cada uno tiene características únicas (tipo, nivel, atributos)
+   - Aparecen de forma aleatoria en el mapa
+
+3. Mapa:
+   - Diferentes áreas del Digimundo (Isla File, Ciudad del Inicio, etc.)
+   - Obstáculos y caminos
+   - Puntos de interés
+
+4. Digivice:
+   - Registra los Digimon encontrados
+   - Muestra información de cada Digimon
+   - Indica la dirección de Digimon cercanos
+
+Mecánicas básicas:
+1. El jugador se mueve por el mapa buscando Digimon
+2. Al encontrar un Digimon, puede intentar hacer amistad con él
+3. Los Digimon rescatados se registran en el Digivice
+4. El objetivo es encontrar todos los Digimon perdidos
+
+Requisitos técnicos:
+1. Implementar clases para:
+   - DigiDestinado
+   - Digimon
+   - Mapa
+   - Digivice
+
+2. Funcionalidades requeridas:
+   - Movimiento del jugador
+   - Generación aleatoria de Digimon
+   - Sistema de colisiones
+   - Registro de Digimon encontrados
+   - Interfaz gráfica básica
+
+3. Interfaz de usuario:
+   - Ventana principal del juego
+   - Panel de información del Digivice
+   - Contador de Digimon encontrados
+   - Minimapa (opcional)
+
+Entregables:
+1. Código fuente comentado
+2. Documento explicando:
+   - Estructura del código
+   - Decisiones de diseño
+   - Instrucciones de uso
+3. Ejecutable del juego
+
+Evaluación:
+- Funcionalidad completa (40%)
+- Diseño y organización del código (25%)
+- Interfaz de usuario (20%)
+- Documentación (15%)
+
+Consejos:
+- Comienza con una versión simple y ve agregando funcionalidades
+- Prueba el juego frecuentemente
+- Mantén el código organizado y bien comentado
+- Considera agregar elementos adicionales para hacer el juego más interesante:
+  * Misiones especiales
+  * Diferentes niveles de dificultad
+  * Efectos de sonido
+  * Animaciones
+
+Recursos adicionales:
+- Sprites de Digimon
+- Mapas del Digimundo
+- Efectos de sonido
+- Documentación de la API gráfica
+
+¡Buena suerte en tu aventura como DigiDestinado programador! 
