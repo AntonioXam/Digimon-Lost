@@ -21,21 +21,8 @@ class DigimonGame {
         this.setupEventListeners();
         this.updateDisplay();
 
-        // Configuración de audio
-        this.backgroundMusic = document.getElementById('background-music');
-        this.successSound = document.getElementById('success-sound');
-        this.failSound = document.getElementById('fail-sound');
-        
-        // Iniciar música de fondo con volumen más bajo
-        this.backgroundMusic.volume = 0.1; // Volumen al 10%
-        this.successSound.volume = 0.2;    // Volumen al 20%
-        this.failSound.volume = 0.2;       // Volumen al 20%
-        
-        // Intentar reproducir la música
-        this.backgroundMusic.play().catch(error => {
-            console.log("Reproducción automática bloqueada por el navegador");
-            // Podríamos añadir un botón para iniciar la música manualmente si es necesario
-        });
+        // Configuración de audio mejorada
+        this.setupAudio();
 
         // Configuración del modal
         this.setupModal();
@@ -253,12 +240,13 @@ class DigimonGame {
         this.initializeBoard();
         this.updateDisplay();
 
-        // Reiniciar música manteniendo el volumen bajo
-        this.backgroundMusic.currentTime = 0;
-        this.backgroundMusic.volume = 0.1;
-        this.backgroundMusic.play().catch(error => {
-            console.log("Reproducción bloqueada al reiniciar");
-        });
+        // Manejar la música al reiniciar
+        if (!this.backgroundMusic.paused) {
+            this.backgroundMusic.currentTime = 0;
+            this.backgroundMusic.play().catch(error => {
+                console.log("Error al reiniciar la música:", error);
+            });
+        }
 
         // Habilitar interacción
         this.disableCells(false);
@@ -349,6 +337,42 @@ class DigimonGame {
                 resolve();
             });
         });
+    }
+
+    setupAudio() {
+        this.backgroundMusic = document.getElementById('background-music');
+        this.successSound = document.getElementById('success-sound');
+        this.failSound = document.getElementById('fail-sound');
+        
+        // Configurar volúmenes
+        this.backgroundMusic.volume = 0.1;
+        this.successSound.volume = 0.2;
+        this.failSound.volume = 0.2;
+
+        // Configurar botón de música
+        const musicBtn = document.getElementById('toggle-music');
+        musicBtn.addEventListener('click', () => this.toggleMusic());
+
+        // Intentar reproducir música (manejando el error de autoplay)
+        this.backgroundMusic.play().catch(error => {
+            console.log("Autoplay bloqueado - esperando interacción del usuario");
+            musicBtn.classList.add('muted');
+        });
+    }
+
+    toggleMusic() {
+        const musicBtn = document.getElementById('toggle-music');
+        if (this.backgroundMusic.paused) {
+            this.backgroundMusic.play();
+            musicBtn.querySelector('.music-icon').textContent = '🔊';
+            musicBtn.querySelector('.music-text').textContent = 'Música On';
+            musicBtn.classList.remove('muted');
+        } else {
+            this.backgroundMusic.pause();
+            musicBtn.querySelector('.music-icon').textContent = '🔇';
+            musicBtn.querySelector('.music-text').textContent = 'Música Off';
+            musicBtn.classList.add('muted');
+        }
     }
 }
 

@@ -433,5 +433,47 @@ button {
 #start-game:hover {
     background-color: #45a049;
     transform: translateY(-2px);
+}
+
+/* Estilos para el control de música */
+.audio-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.music-btn {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #1a237e;
+}
+
+.music-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.music-btn .music-icon {
+    font-size: 1.3em;
+}
+
+.music-btn.muted .music-text {
+    content: "Música Off";
+}
+
+.music-btn.muted .music-icon {
+    content: "🔇";
 } 
 
