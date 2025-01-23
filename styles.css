@@ -100,7 +100,8 @@ h1 {
 
 .cell {
     aspect-ratio: 1;
-    background-color: #e0e0e0;
+    background: url('assets/img/device.png') no-repeat center center;
+    background-size: 80%;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -109,6 +110,7 @@ h1 {
     overflow: hidden;
     position: relative;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background-color: #e0e0e0;
 }
 
 .cell img {
@@ -125,11 +127,11 @@ h1 {
 .cell:hover:not(.revealed) {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    background-color: #d0d0d0;
+    filter: brightness(1.1);
 }
 
 .cell.revealed {
-    background-color: #fff;
+    background: #fff;
     cursor: not-allowed;
 }
 

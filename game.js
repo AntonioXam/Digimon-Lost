@@ -183,14 +183,20 @@ class DigimonGame {
             randomCell.appendChild(img);
             randomCell.classList.add('revealed', 'cpu-hit');
             this.cpuScore++;
+            // Añadir sonido de éxito
+            this.successSound.volume = 0.2;
+            this.successSound.play();
         } else {
-            // Mostrar Sukamon para la CPU también
+            // Mostrar Sukamon para la CPU
             const img = document.createElement('img');
             img.src = SUKAMON.image;
             img.alt = SUKAMON.name;
             randomCell.innerHTML = '';
             randomCell.appendChild(img);
             randomCell.classList.add('revealed', 'fail');
+            // Añadir sonido de error
+            this.failSound.volume = 0.2;
+            this.failSound.play();
         }
 
         randomCell.classList.add('revealed');
